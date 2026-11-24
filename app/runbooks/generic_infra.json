@@ -1,0 +1,23 @@
+{
+  "id": "generic_infra",
+  "title": "General Infrastructure OS Triage",
+  "priority": 50,
+  "match": {
+    "hosts": [],
+    "roles": [],
+    "groups": [],
+    "services": [],
+    "keywords": ["cpu", "memory", "memória", "disk", "disco", "iowait", "load", "oom", "swap", "network"]
+  },
+  "steps": [
+    "Step 1 Load: system.cpu.load[all,avg1] > 2*cores indicates saturation.",
+    "Step 2 CPU: inspect system.cpu.util[,iowait] (>20% -> disk I/O), [,user] (>80%), [,system] (>30%).",
+    "Step 3 Memory: vm.memory.size[available] < 10% and growing swap usage.",
+    "Step 4 Disk: vfs.fs.size[/,pused] > 85%/95% or inode > 90%.",
+    "Step 5 Network & Events: net.if drops/errors and high-severity Zabbix triggers/events."
+  ],
+  "avoid": [
+    "Do NOT escalate high utilization alone if saturation and app latency are flat.",
+    "Do NOT assume an empty event_get result means the host is down without checking host status and ping."
+  ]
+}

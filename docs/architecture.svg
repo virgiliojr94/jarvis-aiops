@@ -1,0 +1,357 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" width="1600" height="980" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .lane { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1.5; rx: 14; }
+      .lane-guard { fill: #fff7ed; stroke: #fdba74; stroke-width: 1.5; rx: 14; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; rx: 10; }
+      .card-accent-blue { fill: #ffffff; stroke: #3b82f6; stroke-width: 1.8; rx: 10; }
+      .card-accent-indigo { fill: #ffffff; stroke: #6366f1; stroke-width: 1.8; rx: 10; }
+      .card-accent-red { fill: #fef2f2; stroke: #ef4444; stroke-width: 2; rx: 10; }
+      .card-accent-emerald { fill: #ffffff; stroke: #10b981; stroke-width: 1.8; rx: 10; }
+      .card-accent-amber { fill: #fffbeb; stroke: #f59e0b; stroke-width: 1.8; rx: 10; }
+      .title { font-size: 24px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-size: 13.5px; fill: #475569; }
+      .lane-hdr { font-size: 13px; font-weight: 700; fill: #334155; letter-spacing: 0.4px; text-transform: uppercase; }
+      .card-hdr-light { font-size: 13.5px; font-weight: 700; fill: #ffffff; }
+      .body { font-size: 12px; fill: #334155; }
+      .body-bold { font-size: 12px; font-weight: 600; fill: #0f172a; }
+      .mono { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 11.2px; fill: #1e293b; }
+      .muted { font-size: 11px; fill: #64748b; }
+      .arrow-main { fill: none; stroke: #2563eb; stroke-width: 2.2; }
+      .arrow-auto { fill: none; stroke: #d97706; stroke-width: 2.2; }
+      .arrow-guard { fill: none; stroke: #dc2626; stroke-width: 2; }
+      .arrow-dash { fill: none; stroke: #059669; stroke-width: 2; stroke-dasharray: 6 4; }
+      .arrow-fb { fill: none; stroke: #7c3aed; stroke-width: 2; stroke-dasharray: 6 4; }
+      .edge-label { font-size: 11px; font-weight: 600; fill: #334155; }
+    </style>
+
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect x="0" y="0" width="1600" height="980" class="bg"/>
+
+  <!-- Header -->
+  <text x="32" y="40" class="title">Arquitetura AIOps — Agente Autônomo de Diagnóstico &amp; Chat</text>
+  <text x="32" y="63" class="subtitle">Fluxo interativo (/ask) e orientado a eventos (/diagnose) • Guardrail MCP Read-Only • Anti-flap, Agrupamento, Memória Vetorial &amp; Feedback Loop</text>
+
+  <!-- Legend top-right -->
+  <rect x="1030" y="18" width="540" height="50" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="1048" y1="43" x2="1082" y2="43" class="arrow-main" marker-end="url(#arr-blue)"/>
+  <text x="1090" y="47" class="muted">Fluxo principal</text>
+  <line x1="1182" y1="43" x2="1216" y2="43" class="arrow-auto" marker-end="url(#arr-amber)"/>
+  <text x="1224" y="47" class="muted">Event-driven</text>
+  <line x1="1308" y1="43" x2="1342" y2="43" class="arrow-dash" marker-end="url(#arr-green)"/>
+  <text x="1350" y="47" class="muted">Prefetch / Recall</text>
+  <line x1="1450" y1="43" x2="1484" y2="43" class="arrow-fb" marker-end="url(#arr-purple)"/>
+  <text x="1492" y="47" class="muted">Feedback</text>
+
+  <!-- ========================================================= -->
+  <!-- LANE 1: CANAIS DE ENTRADA                                 -->
+  <!-- ========================================================= -->
+  <rect x="28" y="122" width="244" height="704" class="lane"/>
+  <text x="44" y="144" class="lane-hdr">1. Canais de Entrada</text>
+
+  <!-- 1A: Telegram /ask -->
+  <rect x="42" y="160" width="216" height="142" class="card-accent-blue"/>
+  <rect x="42" y="160" width="216" height="32" rx="9" fill="#2563eb"/>
+  <rect x="42" y="182" width="216" height="10" fill="#2563eb"/>
+  <text x="54" y="181" class="card-hdr-light">Telegram Bot (/ask)</text>
+  <text x="54" y="212" class="body-bold">Worker Python assíncrono</text>
+  <text x="54" y="232" class="body">• Captura comando no grupo</text>
+  <text x="54" y="251" class="body">• Remove callback_query antes</text>
+  <text x="64" y="266" class="body">do parser bash (sem redisparo)</text>
+  <text x="54" y="286" class="mono">session_id = chat:user_id</text>
+
+  <!-- 1B: Inline Buttons handler -->
+  <rect x="42" y="340" width="216" height="132" class="card"/>
+  <rect x="42" y="340" width="216" height="32" rx="9" fill="#7c3aed"/>
+  <rect x="42" y="362" width="216" height="10" fill="#7c3aed"/>
+  <text x="54" y="361" class="card-hdr-light">Handler de Feedback</text>
+  <text x="54" y="392" class="body-bold">Callback Telegram inline</text>
+  <text x="54" y="412" class="mono">jfb:up:&lt;cid&gt; / jfb:down:&lt;cid&gt;</text>
+  <text x="54" y="432" class="body">• Responde callback instantâneo</text>
+  <text x="54" y="451" class="body">• Edita card com voto + @user</text>
+
+  <!-- 1C: Zabbix Trigger -->
+  <rect x="42" y="512" width="216" height="140" class="card-accent-amber"/>
+  <rect x="42" y="512" width="216" height="32" rx="9" fill="#d97706"/>
+  <rect x="42" y="534" width="216" height="10" fill="#d97706"/>
+  <text x="54" y="533" class="card-hdr-light">Zabbix Alertscript</text>
+  <text x="54" y="564" class="body-bold">Disparo automático 24×7</text>
+  <text x="54" y="584" class="body">• Trigger PROBLEM / RECOVERY</text>
+  <text x="54" y="603" class="body">• Envia event_id, host, trigger</text>
+  <text x="54" y="622" class="body">• Não bloqueia Zabbix (fila async)</text>
+  <text x="54" y="640" class="mono">POST /diagnose (202 Accepted)</text>
+
+  <!-- ========================================================= -->
+  <!-- LANE 2: GATEWAY & ESTEIRA KEEP                            -->
+  <!-- ========================================================= -->
+  <rect x="304" y="122" width="290" height="704" class="lane"/>
+  <text x="320" y="144" class="lane-hdr">2. Flask Gateway (:8765)</text>
+
+  <!-- 2A: Endpoints -->
+  <rect x="318" y="160" width="262" height="114" class="card-accent-blue"/>
+  <rect x="318" y="160" width="262" height="30" rx="9" fill="#1e40af"/>
+  <rect x="318" y="180" width="262" height="10" fill="#1e40af"/>
+  <text x="330" y="180" class="card-hdr-light">API REST &amp; Auth Bearer</text>
+  <text x="330" y="210" class="mono">POST /ask         (chat síncrono)</text>
+  <text x="330" y="228" class="mono">POST /diagnose    (alerta auto)</text>
+  <text x="330" y="246" class="mono">POST /feedback    (👍 / 👎)</text>
+  <text x="330" y="264" class="mono">GET  /admin/stats  /health</text>
+
+  <!-- 2B: Esteira Keep -->
+  <rect x="318" y="298" width="262" height="316" class="card-accent-amber"/>
+  <rect x="318" y="298" width="262" height="32" rx="9" fill="#b45309"/>
+  <rect x="318" y="320" width="262" height="10" fill="#b45309"/>
+  <text x="330" y="319" class="card-hdr-light">Esteira de Proteção (Keep-style)</text>
+
+  <rect x="330" y="342" width="238" height="48" rx="6" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="340" y="361" class="body-bold">1. Debounce pós-disparo (60s)</text>
+  <text x="340" y="379" class="muted">Aguarda estabilização antes da LLM</text>
+
+  <rect x="330" y="402" width="238" height="58" rx="6" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="340" y="421" class="body-bold">2. Check Recovery (r_eventid)</text>
+  <text x="340" y="438" class="body">Consulta Zabbix; se já recuperou</text>
+  <text x="340" y="452" class="muted">(flap), cancela sem gastar tokens</text>
+
+  <rect x="330" y="472" width="238" height="58" rx="6" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="340" y="491" class="body-bold">3. Agrupamento (janela 180s)</text>
+  <text x="340" y="508" class="body">Consolida multi-host / same_trigger</text>
+  <text x="340" y="522" class="muted">em 1 investigação única</text>
+
+  <rect x="330" y="542" width="238" height="58" rx="6" fill="#fee2e2" stroke="#ef4444"/>
+  <text x="340" y="561" class="body-bold">4. Circuit Breaker Autônomo</text>
+  <text x="340" y="578" class="body">Cap 12/h (soft &gt;=6/h) · 60/dia</text>
+  <text x="340" y="592" class="muted">Manual (/ask) nunca é bloqueado</text>
+
+  <!-- 2C: Queue -->
+  <rect x="318" y="636" width="262" height="108" class="card"/>
+  <rect x="318" y="636" width="262" height="30" rx="9" fill="#334155"/>
+  <rect x="318" y="656" width="262" height="10" fill="#334155"/>
+  <text x="330" y="656" class="card-hdr-light">Fila Persistida (diagnosis_jobs)</text>
+  <text x="330" y="686" class="body">• Estado persistido em SQLite</text>
+  <text x="330" y="705" class="body">• Deadline pós-debounce preservado</text>
+  <text x="330" y="724" class="body">• Concorrência controlada (worker)</text>
+
+  <!-- ========================================================= -->
+  <!-- LANE 3: CORE PYTHON, CONTEXTO & LLM ROUTER                -->
+  <!-- ========================================================= -->
+  <rect x="628" y="122" width="386" height="704" class="lane"/>
+  <text x="644" y="144" class="lane-hdr">3. Motor de Contexto, ReAct &amp; Router</text>
+
+  <!-- 3A: Classifier -->
+  <rect x="642" y="160" width="358" height="96" class="card-accent-indigo"/>
+  <rect x="642" y="160" width="358" height="30" rx="9" fill="#4f46e5"/>
+  <rect x="642" y="180" width="358" height="10" fill="#4f46e5"/>
+  <text x="654" y="180" class="card-hdr-light">Classificador de Intenção (classifier.py)</text>
+  <text x="654" y="210" class="body-bold">16 classes operacionais</text>
+  <text x="654" y="228" class="body">• Ajusta thinking_budget dinâmico (256 a 8192)</text>
+  <text x="654" y="246" class="body">• Filtra TOOLS_BY_CLASS (menor ruído no prompt)</text>
+
+  <!-- 3B: Enrichment / Prefetch -->
+  <rect x="642" y="276" width="358" height="184" class="card-accent-emerald"/>
+  <rect x="642" y="276" width="358" height="30" rx="9" fill="#059669"/>
+  <rect x="642" y="296" width="358" height="10" fill="#059669"/>
+  <text x="654" y="296" class="card-hdr-light">Enriquecimento Pré-LLM (Robusta-style)</text>
+  <text x="654" y="325" class="body-bold">Prefetch paralelo determinístico + &lt;provenance&gt;</text>
+  <text x="654" y="346" class="body">• Zabbix: problemas ativos + topologia viva via tags</text>
+  <text x="654" y="365" class="body">• SigNoz: catálogo dinâmico (logs+traces vs traces-only)</text>
+  <text x="654" y="384" class="body">• Prefetch: últimos logs de erro / traces do serviço</text>
+  <text x="654" y="403" class="body">• Runbooks JSON (6): FW, HCI, Oracle, Web, JVM, Infra</text>
+  <text x="654" y="422" class="body">• Recall Vetorial + últimos turnos do chat no contexto</text>
+  <text x="654" y="445" class="muted">Entrega ~70% da evidência antes da 1ª chamada à LLM</text>
+
+  <!-- 3C: ReAct Loop + HolmesGPT -->
+  <rect x="642" y="480" width="358" height="172" class="card-accent-blue"/>
+  <rect x="642" y="480" width="358" height="30" rx="9" fill="#0284c7"/>
+  <rect x="642" y="500" width="358" height="10" fill="#0284c7"/>
+  <text x="654" y="500" class="card-hdr-light">Loop ReAct Python (react_loop.py)</text>
+  <text x="654" y="530" class="body-bold">Orquestração iterativa (máx 6 auto / 10 ask)</text>
+  <text x="654" y="550" class="body">• Executa tool calls MCP em ciclo controlado</text>
+  <text x="654" y="569" class="body">• Sumarizador de Tools (HolmesGPT-style):</text>
+  <text x="666" y="587" class="body">saída &gt; 6000 chars → modelo leve preserva IPs,</text>
+  <text x="666" y="604" class="body">erros exatos, timestamps e trace_ids</text>
+  <text x="654" y="624" class="body">• Scrubbing de segredos/tokens + fallback truncado</text>
+  <text x="654" y="641" class="muted">Deadline global respeitando reserva de envio Telegram</text>
+
+  <!-- 3D: Multi-Model Router -->
+  <rect x="642" y="672" width="358" height="138" class="card-accent-indigo"/>
+  <rect x="642" y="672" width="358" height="30" rx="9" fill="#312e81"/>
+  <rect x="642" y="692" width="358" height="10" fill="#312e81"/>
+  <text x="654" y="692" class="card-hdr-light">Router OAuth Multi-Modelo (gemini_client.py)</text>
+  <text x="654" y="720" class="body-bold">Fallback automático em 429 / 503 / 5xx + cooldown</text>
+  <rect x="654" y="732" width="334" height="44" rx="6" fill="#eef2ff" stroke="#a5b4fc"/>
+  <text x="664" y="750" class="mono">1. gemini-3.8-flash-high → 2. claude-sonnet-4-6</text>
+  <text x="664" y="767" class="mono">→ 3. claude-opus-4-6 → 4. gemini-medium / lite</text>
+  <text x="654" y="795" class="muted">Cooldown progressivo (60s–300s) + refresh OAuth auto</text>
+
+  <!-- ========================================================= -->
+  <!-- LANE 4: GUARDRAIL MCP & FONTES                            -->
+  <!-- ========================================================= -->
+  <rect x="1046" y="122" width="266" height="704" class="lane-guard"/>
+  <text x="1062" y="144" class="lane-hdr">4. MCP Strictly Read-Only</text>
+
+  <!-- 4A: Guardrail -->
+  <rect x="1060" y="160" width="238" height="122" class="card-accent-red"/>
+  <rect x="1060" y="160" width="238" height="32" rx="9" fill="#dc2626"/>
+  <rect x="1060" y="182" width="238" height="10" fill="#dc2626"/>
+  <text x="1072" y="181" class="card-hdr-light">Guardrail em Código</text>
+  <text x="1072" y="211" class="body-bold">Barreira MCP (mcp_loader.py)</text>
+  <text x="1072" y="231" class="body">• Allowlist explícita de tools RO</text>
+  <text x="1072" y="249" class="body">• Regex bloqueia verbos de escrita</text>
+  <text x="1072" y="267" class="mono">create/update/delete/ack</text>
+
+  <!-- 4B: Zabbix MCP -->
+  <rect x="1060" y="308" width="238" height="200" class="card"/>
+  <rect x="1060" y="308" width="238" height="32" rx="9" fill="#0f766e"/>
+  <rect x="1060" y="330" width="238" height="10" fill="#0f766e"/>
+  <text x="1072" y="329" class="card-hdr-light">Zabbix MCP Server (HTTP)</text>
+  <text x="1072" y="360" class="body-bold">37 tools RO liberadas (de 231)</text>
+  <text x="1072" y="382" class="mono">• host_get / hostgroup_get</text>
+  <text x="1072" y="400" class="mono">• problem_get / event_get</text>
+  <text x="1072" y="418" class="mono">• trigger_get (dependências)</text>
+  <text x="1072" y="436" class="mono">• item_get / history_get</text>
+  <text x="1072" y="454" class="mono">• trend_get / graph_render</text>
+  <text x="1072" y="472" class="mono">• maintenance_get</text>
+  <text x="1072" y="494" class="muted">Acesso apenas leitura ao Zabbix</text>
+
+  <!-- 4C: SigNoz MCP -->
+  <rect x="1060" y="532" width="238" height="200" class="card"/>
+  <rect x="1060" y="532" width="238" height="32" rx="9" fill="#0f766e"/>
+  <rect x="1060" y="554" width="238" height="10" fill="#0f766e"/>
+  <text x="1072" y="553" class="card-hdr-light">SigNoz MCP Server (stdio)</text>
+  <text x="1072" y="584" class="body-bold">Observabilidade OpenTelemetry</text>
+  <text x="1072" y="606" class="mono">• list_services (catálogo)</text>
+  <text x="1072" y="624" class="mono">• search_logs / aggregate_logs</text>
+  <text x="1072" y="642" class="mono">• search_traces (isRoot/erro)</text>
+  <text x="1072" y="660" class="mono">• get_trace_details</text>
+  <text x="1072" y="678" class="mono">• aggregate_traces (p95/p99)</text>
+  <text x="1072" y="710" class="muted">ClickHouse Logs, Traces e Métricas</text>
+
+  <!-- ========================================================= -->
+  <!-- LANE 5: MEMÓRIA PERSISTENTE & ENTREGA                     -->
+  <!-- ========================================================= -->
+  <rect x="1344" y="122" width="228" height="704" class="lane"/>
+  <text x="1358" y="144" class="lane-hdr">5. Memória &amp; Saída</text>
+
+  <!-- 5A: SQLite + sqlite-vec -->
+  <rect x="1356" y="160" width="204" height="284" class="card-accent-emerald"/>
+  <rect x="1356" y="160" width="204" height="32" rx="9" fill="#047857"/>
+  <rect x="1356" y="182" width="204" height="10" fill="#047857"/>
+  <text x="1368" y="181" class="card-hdr-light">SQLite + sqlite-vec</text>
+  <text x="1368" y="212" class="body-bold">Memória &amp; Auditoria</text>
+
+  <text x="1368" y="236" class="mono">incidents + vec_incidents</text>
+  <text x="1368" y="252" class="muted">Busca coseno (dist &lt;= 0.25)</text>
+
+  <text x="1368" y="278" class="mono">conversation_turns</text>
+  <text x="1368" y="294" class="muted">Contexto multi-turno com TTL</text>
+
+  <text x="1368" y="320" class="mono">diagnosis_jobs</text>
+  <text x="1368" y="336" class="muted">Fila, status e métricas</text>
+
+  <text x="1368" y="362" class="mono">feedback (up / down)</text>
+  <text x="1368" y="378" class="muted">Pondera score no recall futuro</text>
+  <text x="1368" y="396" class="muted">Alimenta GET /admin/stats</text>
+
+  <rect x="1368" y="410" width="180" height="24" rx="5" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="1378" y="426" class="muted">Persistência local segura</text>
+
+  <!-- 5B: Delivery Telegram -->
+  <rect x="1356" y="478" width="204" height="218" class="card-accent-blue"/>
+  <rect x="1356" y="478" width="204" height="32" rx="9" fill="#1d4ed8"/>
+  <rect x="1356" y="500" width="204" height="10" fill="#1d4ed8"/>
+  <text x="1368" y="499" class="card-hdr-light">Entrega no Telegram</text>
+  <text x="1368" y="530" class="body-bold">Card de Diagnóstico / Resposta</text>
+  <text x="1368" y="552" class="body">• Dados rastreados às fontes</text>
+  <text x="1368" y="570" class="body">• Chunking em msgs longas</text>
+  <text x="1368" y="588" class="body">• Último chunk anexa botões:</text>
+
+  <rect x="1368" y="604" width="84" height="30" rx="6" fill="#eff6ff" stroke="#3b82f6"/>
+  <text x="1384" y="623" class="body-bold">👍 Útil</text>
+  <rect x="1460" y="604" width="88" height="30" rx="6" fill="#fef2f2" stroke="#ef4444"/>
+  <text x="1475" y="623" class="body-bold">👎 Errou</text>
+
+  <text x="1368" y="658" class="muted">Anexado a cid (correlation_id)</text>
+  <text x="1368" y="676" class="muted">em /diagnose e /ask</text>
+
+  <!-- ========================================================= -->
+  <!-- ARROWS (clean gutters above y=114 and below y=760/830)    -->
+  <!-- ========================================================= -->
+
+  <!-- 1A (/ask) -> 2A (API REST) -->
+  <path d="M 258 212 L 316 212" class="arrow-main" marker-end="url(#arr-blue)"/>
+
+  <!-- 1C (Zabbix) -> 2A (/diagnose) -->
+  <path d="M 258 582 L 286 582 L 286 228 L 316 228" class="arrow-auto" marker-end="url(#arr-amber)"/>
+
+  <!-- 2A (/ask) -> 3A (Classifier) -->
+  <path d="M 580 204 L 640 204" class="arrow-main" marker-end="url(#arr-blue)"/>
+
+  <!-- 2A (/diagnose) -> 2B -> 2C -->
+  <path d="M 449 274 L 449 296" class="arrow-auto" marker-end="url(#arr-amber)"/>
+  <path d="M 449 614 L 449 634" class="arrow-auto" marker-end="url(#arr-amber)"/>
+
+  <!-- 2C (Queue) -> 3A (Classifier via gutter x=612) -->
+  <path d="M 580 690 L 614 690 L 614 226 L 640 226" class="arrow-auto" marker-end="url(#arr-amber)"/>
+
+  <!-- 3A -> 3B -> 3C <-> 3D -->
+  <path d="M 821 256 L 821 274" class="arrow-main" marker-end="url(#arr-blue)"/>
+  <path d="M 821 460 L 821 478" class="arrow-main" marker-end="url(#arr-blue)"/>
+  <path d="M 821 652 L 821 670" class="arrow-main" marker-start="url(#arr-blue)" marker-end="url(#arr-blue)"/>
+
+  <!-- 3B (Enrichment) -> 4A (Prefetch via gutter x=1028) -->
+  <path d="M 1000 364 L 1028 364 L 1028 218 L 1058 218" class="arrow-dash" marker-end="url(#arr-green)"/>
+
+  <!-- 3C (ReAct) <-> 4A (Guardrail via gutter x=1036) -->
+  <path d="M 1000 564 L 1036 564 L 1036 244 L 1058 244" class="arrow-guard" marker-start="url(#arr-red)" marker-end="url(#arr-red)"/>
+
+  <!-- 4A <-> 4B (Zabbix MCP) and 4C (SigNoz MCP via gutter x=1324) -->
+  <path d="M 1179 282 L 1179 306" class="arrow-guard" marker-start="url(#arr-red)" marker-end="url(#arr-red)"/>
+  <path d="M 1298 240 L 1324 240 L 1324 632 L 1300 632" class="arrow-guard" marker-start="url(#arr-red)" marker-end="url(#arr-red)"/>
+
+  <!-- 3C -> 5A (Indexa incidente em SQLite) via TOP GUTTER y=80 (strictly above lanes y=122) -->
+  <path d="M 1000 500 L 1020 500 L 1020 80 L 1332 80 L 1332 218 L 1354 218" class="arrow-main" marker-end="url(#arr-blue)"/>
+  <rect x="1116" y="69" width="136" height="20" rx="5" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="1184" y="83" text-anchor="middle" class="edge-label">Indexa incidente</text>
+
+  <!-- 5A (SQLite Recall) -> 3B (Enrichment) via TOP GUTTER y=103 (above lanes y=122) -->
+  <path d="M 1356 260 L 1328 260 L 1328 103 L 1012 103 L 1012 340 L 1002 340" class="arrow-dash" marker-end="url(#arr-green)"/>
+  <rect x="1120" y="93" width="128" height="20" rx="5" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="1184" y="107" text-anchor="middle" class="edge-label">Recall &amp; turns</text>
+
+  <!-- 3C -> 5B (Entrega Telegram) via gutter y=776 -->
+  <path d="M 1000 584 L 1024 584 L 1024 776 L 1458 776 L 1458 698" class="arrow-main" marker-end="url(#arr-blue)"/>
+  <rect x="1128" y="764" width="150" height="22" rx="5" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="1203" y="779" text-anchor="middle" class="edge-label">Diagnóstico / Resposta</text>
+
+  <!-- FEEDBACK LOOP (Bottom card y=872..954) -->
+  <rect x="28" y="872" width="1544" height="82" rx="12" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1.4"/>
+  <text x="46" y="898" class="body-bold" fill="#5b21b6">Loop Contínuo de Feedback e Aprendizado:</text>
+  <text x="46" y="918" class="body">Operador clica [👍 Útil] ou [👎 Errou] no Telegram (5) → Callback Handler (1) envia POST /feedback ao Gateway (2) → Grava em SQLite (5) →</text>
+  <text x="46" y="936" class="body">Pontuação ajusta o ranking de similaridade do Recall Vetorial (5 → 3) nos próximos incidentes e alimenta o painel GET /admin/stats.</text>
+
+  <!-- Purple feedback lines routed outside cards (left outer x=14, right outer x=1586) -->
+  <path d="M 1480 696 L 1480 870" class="arrow-fb" marker-end="url(#arr-purple)"/>
+  <path d="M 150 870 L 150 846 L 14 846 L 14 406 L 40 406" class="arrow-fb" marker-end="url(#arr-purple)"/>
+  <path d="M 258 406 L 296 406 L 296 244 L 316 244" class="arrow-fb" marker-end="url(#arr-purple)"/>
+  <path d="M 580 244 L 602 244 L 602 846 L 1586 846 L 1586 340 L 1562 340" class="arrow-fb" marker-end="url(#arr-purple)"/>
+  <rect x="748" y="834" width="224" height="22" rx="5" fill="#faf5ff" stroke="#c084fc"/>
+  <text x="860" y="849" text-anchor="middle" class="edge-label">POST /feedback → tabela feedback</text>
+</svg>

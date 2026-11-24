@@ -1,0 +1,22 @@
+{
+  "id": "web_reverse_proxy",
+  "title": "Web Endpoints, Ingress & Reverse Proxies",
+  "priority": 25,
+  "match": {
+    "hosts": ["proxy", "ingress", "traefik", "nginx", "gateway"],
+    "roles": ["web-frontend", "web-monitoring", "ingress", "reverse-proxy"],
+    "groups": ["endpoints", "web-monitoring", "ingress"],
+    "services": ["traefik", "nginx-ingress"],
+    "keywords": ["endpoint", "http", "https", "502", "503", "504", "tls", "ssl", "traefik"]
+  },
+  "steps": [
+    "Inspect Zabbix host tags: service, ingress, depends_on, app_host, and tier.",
+    "Check ingress/reverse-proxy traces in SigNoz (when traces-only, skip log queries for that ingress service).",
+    "Separate edge/ingress failures from upstream backend errors on app_host.",
+    "If >=3 endpoints sharing the same service tag fail together, inspect app_host first."
+  ],
+  "avoid": [
+    "Do NOT search logs for traces-only ingress proxies listed in the SigNoz catalog.",
+    "Do NOT infer a shared root cause across unrelated endpoints lacking a common service/app_host tag."
+  ]
+}

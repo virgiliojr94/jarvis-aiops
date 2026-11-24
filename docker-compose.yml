@@ -1,0 +1,19 @@
+services:
+  jarvis-aiops:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jarvis-aiops
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    env_file:
+      - .env
+    mem_limit: 2048m
+    cpus: '1.0'
+    volumes:
+      - ./data:/app/data
+      - ./app/runbooks:/app/runbooks:ro
+      - ./app/prompts:/app/prompts:ro
+      # Uncomment if mounting a pre-built signoz-mcp-server binary:
+      # - ./bin/signoz-mcp-server:/usr/local/bin/signoz-mcp-server:ro

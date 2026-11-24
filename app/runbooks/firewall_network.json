@@ -1,0 +1,22 @@
+{
+  "id": "firewall_network",
+  "title": "Edge Firewall, Switches & Network Telemetry",
+  "priority": 10,
+  "match": {
+    "hosts": ["firewall", "fw-", "switch", "router", "edge-fw"],
+    "roles": ["firewall", "network", "switch", "router"],
+    "groups": ["firewall", "network", "switches"],
+    "services": [],
+    "keywords": ["fortigate", "firewall", "ips", "packet loss", "link down", "port ", "bgp", "vpn"]
+  },
+  "steps": [
+    "Identify target network device via zabbix_host_get.",
+    "Read gauge metrics directly (active sessions, CPU, memory).",
+    "For monotonic/cumulative counters (interface bytes, drops, IPS blocks): fetch a time series via zabbix_history_get or zabbix_trend_get and compute the delta over the window.",
+    "Pass history=value_type (0=float, 3=uint) matching zabbix_item_get."
+  ],
+  "avoid": [
+    "Do NOT query SigNoz for pure L2/L3 network gear that only reports SNMP to Zabbix.",
+    "Do NOT treat cumulative counter raw totals as a burst inside the current window."
+  ]
+}

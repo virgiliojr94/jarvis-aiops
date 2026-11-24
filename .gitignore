@@ -1,0 +1,27 @@
+# Secrets & local environment
+.env
+.env.*
+!.env.example
+*.secret
+auth_token
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Runtime SQLite & binaries
+data/
+*.db
+*.db-wal
+*.db-shm
+bin/signoz-mcp-server
+
+# OS / Editors
+.DS_Store
+.vscode/
+.idea/

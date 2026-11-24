@@ -1,0 +1,22 @@
+{
+  "id": "database_sql",
+  "title": "Database Nodes & Downstream Service Cascade",
+  "priority": 15,
+  "match": {
+    "hosts": ["db-", "postgres", "oracle", "mysql", "mariadb"],
+    "roles": ["database", "db-oracle", "db-postgres", "db-mysql"],
+    "groups": ["databases", "db"],
+    "services": [],
+    "keywords": ["oracle", "postgres", "mysql", "database", "banco", "ora-", "deadlock", "tablespace"]
+  },
+  "steps": [
+    "Check DB host resources via Zabbix: iowait, CPU load, available RAM, disk/IOPS saturation.",
+    "Check recent events/triggers for OOM, disk full, or I/O errors.",
+    "Inspect <signoz_prefetch> for downstream application services configured via Zabbix tags.",
+    "If SigNoz shows DB-related exceptions, drill down via trace_id to search_logs."
+  ],
+  "avoid": [
+    "Do NOT repeat SigNoz queries if <signoz_prefetch> already surfaced errors for downstream apps.",
+    "Do NOT attempt write or SQL execution commands (strictly read-only observability)."
+  ]
+}

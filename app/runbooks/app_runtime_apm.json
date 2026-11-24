@@ -1,0 +1,22 @@
+{
+  "id": "app_runtime_apm",
+  "title": "Application Runtimes & OpenTelemetry RED Triage",
+  "priority": 20,
+  "match": {
+    "hosts": ["app-", "api-", "svc-", "worker-"],
+    "roles": ["app-server", "docker-host", "kubernetes-node", "wildfly-app", "jvm"],
+    "groups": ["applications", "microservices", "docker"],
+    "services": [],
+    "keywords": ["5xx", "latência", "latency", "p95", "p99", "timeout", "exception", "error rate"]
+  },
+  "steps": [
+    "Read <signoz_prefetch> injected into context before running extra APM queries.",
+    "Drill down RED signals: aggregate_traces (hasError=true, p95/p99) -> search_traces -> search_logs by trace_id.",
+    "Check logs with severity=ERROR even when trace numErrors appears low.",
+    "Correlate APM degradation with underlying host CPU/memory/disk in Zabbix before blaming infrastructure."
+  ],
+  "avoid": [
+    "Do NOT run broad SigNoz searches without a service.name filter and short time window (<=6h).",
+    "Do NOT declare total service outage from host CPU alone if RED latency/errors are healthy."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "hypervisor_cluster",
+  "title": "Hypervisors & Tier-1 Storage Cascade",
+  "priority": 5,
+  "match": {
+    "hosts": ["hypervisor", "hci", "esxi", "proxmox", "kvm"],
+    "roles": ["hypervisor", "nfs-storage", "san-storage"],
+    "groups": ["hypervisors", "hci", "virtualization"],
+    "services": [],
+    "keywords": ["hypervisor", "hci", "tier=1", "cascade", "cascata", "vmhost"]
+  },
+  "steps": [
+    "Confirm Tier-1 host status via zabbix_host_get and interfaces.",
+    "If Tier-1 host is DOWN: declare TOTAL CASCADE first — dependent Tier-2/3 alerts are downstream symptoms.",
+    "Phase 1: focus mitigation on Tier-1 before investigating guest VMs.",
+    "Check saturation: CPU load > 2*cores, iowait > 20%, available memory < 10%, storage latency."
+  ],
+  "avoid": [
+    "Do NOT investigate guest Tier-2/3 VMs individually while the underlying hypervisor is down.",
+    "Do NOT claim root cause without load/iowait/memory evidence from the host."
+  ]
+}
